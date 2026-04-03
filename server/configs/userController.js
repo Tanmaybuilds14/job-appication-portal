@@ -1,4 +1,4 @@
-import User from '../db_model/userDB';
+import user from "../db_model/userDB.js";
 
 const userController = async (req,res) => {
   try {
@@ -7,13 +7,13 @@ const userController = async (req,res) => {
       email,
       password,
       logintype,
-      education,
-      skills
+      education = [],
+      skills = []
     } = req.body
     
     //checking for duplicate login email
-    const duplicateUser = User.findOne({email});
-    if(duplicateUser){
+    const duplicateUser = user.findOne({email});
+    if(!duplicateUser){
       return res.status(409).json({
         success: false,
         message: "User already exists with this email"
@@ -21,7 +21,7 @@ const userController = async (req,res) => {
     }
     
 
-    const User = User.create({
+    const newUser = user.create({
       username,
       email,
       password,
@@ -34,13 +34,13 @@ const userController = async (req,res) => {
       success: true,
       message: "User registered successfully",
       User:{
-        _id: User._id,
-        username: User.username,
-        email: User.email,
-        loginType: User.loginType,
-        education: User.education,
-        skills: User.skills,
-        createdAt: User.createdAt
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        loginType: user.loginType,
+        education: user.education,
+        skills: user.skills,
+        createdAt: user.createdAt
       }});
 
   } catch (error) {

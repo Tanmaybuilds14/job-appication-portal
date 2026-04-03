@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import mongoose from "mongoose";
 
-const User = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
  username:{
   type:String,
   required:[true,'name is required'],
@@ -37,16 +37,15 @@ const User = new mongoose.Schema({
     passingDate:{type:Date,required:true,default:Date.now},
   }],
   skills:[{
-    name:{type:String,required:true,trim},
+    name:{type:String,required:true,trim:true},
     level:{type:String,enum:['beginner','intermediate','advanced']},
     experinece:{type: Number,min:0,default:0}
   }]
 });
 
-User.pre('save',async()=>{
-  if (!this.isModified('password')) return next();
+userSchema.pre('save', async function(){
+  if (!this.isModified('password')) return;
   this.password = await bcrypt.hash(this.password, 12);
-  next();
 })
 
-module.exports = mongoose.model('user', User);
+export default mongoose.model('user',userSchema);
