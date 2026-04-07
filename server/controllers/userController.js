@@ -12,8 +12,8 @@ const userController = async (req,res) => {
     } = req.body
     
     //checking for duplicate login email
-    const duplicateUser = user.findOne({email});
-    if(!duplicateUser){
+    const duplicateUser = await user.findOne({email});
+    if(duplicateUser){
       return res.status(409).json({
         success: false,
         message: "User already exists with this email"
@@ -21,7 +21,7 @@ const userController = async (req,res) => {
     }
     
 
-    const newUser = user.create({
+    const newUser = await user.create({
       username,
       email,
       password,
@@ -34,13 +34,13 @@ const userController = async (req,res) => {
       success: true,
       message: "User registered successfully",
       User:{
-        _id: user._id,
-        username: user.username,
-        email: user.email,
-        loginType: user.loginType,
-        education: user.education,
-        skills: user.skills,
-        createdAt: user.createdAt
+        _id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+        loginType: newUser.logintype,
+        education: newUser.education,
+        skills: newUser.skills,
+        createdAt: newUser.createdAt
       }});
 
   } catch (error) {

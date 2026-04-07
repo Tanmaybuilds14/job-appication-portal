@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
-import userController from "./configs/userController.js";
+import userController from "./controllers/userController.js";
 import userValidator from "./middlewares/validator.js";
 import connectDB from "./connectDB.js";
 import dotenv from 'dotenv';
+import logincontroller from "./controllers/loginController.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ const startServer = async () => {
 
     //all routes
     app.post('/register',userValidator,userController);
+    app.post('/login',logincontroller)
     app.get('/',(req,res)=>{
       res.status(200).json({msg:"server is running successfully"});
     });
