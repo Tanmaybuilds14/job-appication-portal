@@ -1,10 +1,8 @@
-import express from "express";
+import express, { Router } from "express";
 import cors from "cors";
-import userController from "./controllers/userController.js";
-import userValidator from "./middlewares/validator.js";
 import connectDB from "./connectDB.js";
 import dotenv from 'dotenv';
-import logincontroller from "./controllers/loginController.js";
+import userRouter from './Routes/user.js'
 
 dotenv.config();
 
@@ -21,12 +19,8 @@ const startServer = async () => {
     // Initialize database before starting server
     await connectDB();
 
-    //all routes
-    app.post('/register',userValidator,userController);
-    app.post('/login',logincontroller)
-    app.get('/',(req,res)=>{
-      res.status(200).json({msg:"server is running successfully"});
-    });
+    app.use('/api',userRouter);
+    
 
     app.listen(PORT,()=>{
       console.log(`server running on http://localhost:${PORT}`);

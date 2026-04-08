@@ -1,6 +1,6 @@
 import user from "../db_model/userDB.js";
 
-const userController = async (req,res) => {
+const createUser = async (req,res) => {
   try {
     const {
       username,
@@ -49,4 +49,61 @@ const userController = async (req,res) => {
   }
 }
 
-export default userController
+const updateUser = async (req,res) => {
+  try {
+
+  const {id} = req.params;
+  const {username,email,skills,education} = req.body;
+
+  const User = await user.findById(id);
+
+  if(!User){
+    return res.status(404).json({
+      success:false,
+      msg:'user not found'
+    });
+  }
+
+  if(email && email!==User.email){
+    //duplicate user email check
+    const existinguser = await user.findOne({email});
+    if(existinguser){
+      return res.status(409).json({
+        success:false,
+        msg:'email already in use'
+      });
+    }
+  }
+
+  User.username = username || User.username;
+  User.email = email || User.email;
+  
+  if (Array.isArray(skills)) {
+    user.skills = skills;
+  }
+
+  if (Array.isArray(education)) {
+    user.education = education;
+  }
+  
+  const updatedUser = await user.save();
+
+  res.status(200).json({
+    success:true,
+    msg:'user updated successfully',
+    data:updatedUser
+  });
+
+
+  } catch (error) {
+
+    console.error(error.message);
+    return res.status(500).json({
+      success:false,
+      msg:'internal server error'
+    });
+
+  }
+}
+
+export default createUser
