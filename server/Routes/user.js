@@ -1,9 +1,9 @@
 import express from 'express';
 import {createUser,updateUser,deleteUser} from '../controllers/userController.js';
-import userValidator from '../middlewares/validator.js';
+import userValidator from '../middlewares/uservalidator.js';
 import logincontroller from '../controllers/loginController.js';
 
-const router = express.Router();
+const userRouter = express.Router();
 
 
 router.post('/register',userValidator,createUser);
@@ -14,4 +14,4 @@ router.get('/',(req,res)=>{
   res.status(200).json({msg:"server is running successfully"});
 });
 
-export default router
+export default userRouter

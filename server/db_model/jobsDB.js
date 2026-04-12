@@ -20,7 +20,7 @@ const Jobs = new mongoose.Schema(
   description:{
     type:String,
     required:true,
-    triem:true
+    trim:true
   },
   recruiter:{
     type:mongoose.Schema.Types.ObjectId,

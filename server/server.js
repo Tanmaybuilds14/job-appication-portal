@@ -3,6 +3,7 @@ import cors from "cors";
 import connectDB from "./connectDB.js";
 import dotenv from 'dotenv';
 import userRouter from './Routes/user.js'
+import jobsRouter from "./Routes/jobs.js";
 
 dotenv.config();
 
@@ -12,7 +13,6 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-
 // Initialize server
 const startServer = async () => {
   try {
@@ -20,6 +20,7 @@ const startServer = async () => {
     await connectDB();
 
     app.use('/api',userRouter);
+    app.use('/jobs',jobsRouter)
     
 
     app.listen(PORT,()=>{

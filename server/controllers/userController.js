@@ -106,4 +106,31 @@ const updateUser = async (req,res) => {
   }
 }
 
-export default createUser
+const deleteUser = async (req,res) => {
+  try {
+    const {id} = req.params;
+
+    const User = await user.findById(id);
+    if(!User){
+      return res.status(404).json({
+        success:false,
+        msg:'Resource not found'
+      });
+    }
+
+    await User.deleteOne();
+
+    return res.status(200).json({
+      success:true,
+      msg:'user deleted'
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({
+      success:false,
+      msg:'Internal server error'
+    });
+  }
+}
+
+export {createUser,updateUser,deleteUser}
