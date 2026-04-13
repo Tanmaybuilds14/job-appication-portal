@@ -6,11 +6,11 @@ import logincontroller from '../controllers/loginController.js';
 const userRouter = express.Router();
 
 
-router.post('/register',userValidator,createUser);
-router.post('/login',logincontroller);
-router.put('/user/:id',updateUser);
-router.delete('/user/:id',deleteUser);
-router.get('/',(req,res)=>{
+userRouter.post('/register',userValidator,createUser);
+userRouter.post('/login',logincontroller);
+userRouter.put('/user/:id',updateUser);
+userRouter.delete('/user/:id',deleteUser);
+userRouter.get('/',(req,res)=>{
   res.status(200).json({msg:"server is running successfully"});
 });
 

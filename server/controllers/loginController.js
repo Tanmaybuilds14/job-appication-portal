@@ -34,7 +34,7 @@ const logincontroller = async (req,res)=>{
       email:User.email,
       logintype:User.logintype
       },
-      process.env.JWT_SECRET_KEY,
+      `Bearer ${process.env.JWT_SECRET_KEY}`,
       { expiresIn: "7d" }
     );
     return res.status(200).json({

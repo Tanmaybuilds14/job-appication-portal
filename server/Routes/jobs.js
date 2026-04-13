@@ -5,8 +5,8 @@ import { createJobs, deleteJobs, updatejobs } from '../controllers/jobsControlle
 
 const jobsRouter = express.Router();
 
-router.post('/create',authmidlleware,jobValidator,createJobs);
-router.put('/:id',authmidlleware,updatejobs);
-router.delete('/:id',authmidlleware,deleteJobs);
+jobsRouter.post('/create',authmidlleware,jobValidator,createJobs);
+jobsRouter.put('/:id',authmidlleware,updatejobs);
+jobsRouter.delete('/:id',authmidlleware,deleteJobs);
 
 export default jobsRouter

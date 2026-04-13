@@ -86,7 +86,7 @@ const updateUser = async (req,res) => {
     user.education = education;
   }
   
-  const updatedUser = await user.save();
+  const updatedUser = await User.save();
 
   res.status(200).json({
     success:true,
