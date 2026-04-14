@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 import cors from "cors";
-import connectDB from "./connectDB.js";
+import connectDB from "./configs/connectDB.js";
 import dotenv from 'dotenv';
 import userRouter from './Routes/user.js'
 import jobsRouter from "./Routes/jobs.js";

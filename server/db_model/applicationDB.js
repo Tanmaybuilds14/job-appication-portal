@@ -13,8 +13,14 @@ const applications = new mongoose.Schema(
     required:true
   },
   resume:{
-    type:String,
-    required:true
+    url:{
+      type: String,
+      required: true
+      },
+    public_id:{
+      type: String,
+      required: true
+    }
   },
   status:{
     type:String,

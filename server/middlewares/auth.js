@@ -21,7 +21,7 @@ const authmidlleware = async (req,res,next) =>{
   if(!user){
     return res.status(404).json({msg:'user not found in database'});
   }
-
+  
  //sending decoded payload
   req.user = decoded.userid;
   next();
