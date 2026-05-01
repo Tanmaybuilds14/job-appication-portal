@@ -83,4 +83,43 @@ const deleteJobs = async (req,res) => {
   }
 }
 
-export {createJobs,updatejobs,deleteJobs}
+const getAllJobs = async (req, res) => {
+  try {
+    const allJobs = await jobs.find().populate('recruiter', 'username email');
+    return res.status(200).json({
+      success: true,
+      data: allJobs
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({
+      success: false,
+      msg: 'Internal server error'
+    });
+  }
+}
+
+const getJobById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const job = await jobs.findById(id).populate('recruiter', 'username email');
+    if (!job) {
+      return res.status(404).json({
+        success: false,
+        msg: 'Resource not found'
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      data: job
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({
+      success: false,
+      msg: 'Internal server error'
+    });
+  }
+}
+
+export {createJobs,updatejobs,deleteJobs, getAllJobs, getJobById}

@@ -4,6 +4,7 @@ import connectDB from "./configs/connectDB.js";
 import dotenv from 'dotenv';
 import userRouter from './Routes/user.js'
 import jobsRouter from "./Routes/jobs.js";
+import applicationRouter from "./Routes/applications.js";
 
 dotenv.config();
 
@@ -20,7 +21,8 @@ const startServer = async () => {
     await connectDB();
 
     app.use('/api',userRouter);
-    app.use('/jobs',jobsRouter)
+    app.use('/jobs',jobsRouter);
+    app.use('/api', applicationRouter);
     
 
     app.listen(PORT,()=>{
