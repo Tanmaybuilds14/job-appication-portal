@@ -1,5 +1,5 @@
 import express from 'express';
-import { applyJob, getApplications, myApplications, withdrawApplication } from '../controllers/applicationController.js'
+import { applyJob,getApplications,myApplications,withdrawApplication } from '../controllers/applicationController.js'
 import authmiddleware from '../middlewares/auth.js'
 import upload from '../middlewares/multer.js';
 

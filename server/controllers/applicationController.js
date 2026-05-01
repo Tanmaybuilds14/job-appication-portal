@@ -169,4 +169,4 @@ const withdrawApplication = async (req,res) => {
   }
 }
 
-export default {applyJob,getApplications,myApplications,withdrawApplication};
+export {applyJob,getApplications,myApplications,withdrawApplication};
