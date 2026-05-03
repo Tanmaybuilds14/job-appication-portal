@@ -19,8 +19,8 @@ const applyJob = async (req,res) => {
     }
 
     const existingapplication = await applicationDB.findOne({
-      applicant:req.user.id,
-      job:jobId
+      applicant: req.user,
+      job: jobId
     });
 
     if(existingapplication){
@@ -43,10 +43,8 @@ const applyJob = async (req,res) => {
     });
 
     const application = await applicationDB.create({
-      applicant:req.user.id,
+      applicant: req.user,
       job: jobId,
-      recruiter: job.recruiter,
-      coverLetter,
       resume: {
         url: result.secure_url,
         public_id: result.public_id
@@ -74,9 +72,8 @@ const applyJob = async (req,res) => {
 
 const myApplications = async (req,res) => {
   try {
-    const applications = await applicationDB.find({ applicant: req.user.id })
-      .populate("job")
-      .populate("recruiter", "name email");
+    const applications = await applicationDB.find({ applicant: req.user })
+      .populate("job");
     
       res.status(200).json({
       success: true,
@@ -105,7 +102,7 @@ const getApplications = async (req,res) => {
       });
     }
 
-     if (job.recruiter.toString() !== req.user.id) {
+     if (job.recruiter.toString() !== req.user) {
       return res.status(403).json({
         success: false,
         message: "Not authorized to view these applications"
@@ -143,7 +140,7 @@ const withdrawApplication = async (req,res) => {
       });
     }
 
-    if (application.applicant.toString() !== req.user.id) {
+    if (application.applicant.toString() !== req.user) {
       return res.status(403).json({
         success: false,
         message: "Not authorized to delete this application"

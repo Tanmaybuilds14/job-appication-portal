@@ -9,7 +9,7 @@ const createJobs = async (req,res) => {
       company:company,
       salary:salary,
       description:description,
-      recruiter:req.user.id
+      recruiter:req.user
     });
 
     return res.status(200).json({
@@ -42,7 +42,7 @@ const updatejobs = async (req,res) => {
 
     const updatedjob = await job.save();
 
-    res.status(200),json({
+    res.status(200).json({
       success:true,
       data:updatedjob
     });
