@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Mail, Lock, LogIn, AlertCircle } from 'lucide-react';
+import { Mail, Lock, LogIn, AlertCircle, Briefcase, User } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [logintype, setLogintype] = useState('applicant');
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await login(email, password);
+    const result = await login(email, password, logintype);
     if (result.success) {
       navigate('/dashboard');
     } else {
@@ -23,8 +24,26 @@ const Login = () => {
   return (
     <div className="auth-container glass">
       <h2>Welcome Back</h2>
+      
+      <div className="role-selector">
+        <button 
+          className={`role-btn ${logintype === 'applicant' ? 'active' : ''}`}
+          onClick={() => setLogintype('applicant')}
+        >
+          <User size={24} />
+          <span>Applicant</span>
+        </button>
+        <button 
+          className={`role-btn ${logintype === 'employer' ? 'active' : ''}`}
+          onClick={() => setLogintype('employer')}
+        >
+          <Briefcase size={24} />
+          <span>Employer</span>
+        </button>
+      </div>
+
       {error && (
-        <div className="error" style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+        <div className="error glass" style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center', marginBottom: '1.5rem', color: 'var(--error)', border: '1px solid var(--error)', padding: '0.8rem' }}>
           <AlertCircle size={18} />
           <span>{error}</span>
         </div>
@@ -54,7 +73,7 @@ const Login = () => {
         </div>
         <button type="submit" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
           <LogIn size={20} />
-          <span>Login to Account</span>
+          <span>Login as {logintype.charAt(0).toUpperCase() + logintype.slice(1)}</span>
         </button>
       </form>
       <p style={{ marginTop: '1.5rem', textAlign: 'center', color: 'var(--text-dim)', fontSize: '0.9rem' }}>

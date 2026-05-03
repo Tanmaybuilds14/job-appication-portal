@@ -235,6 +235,132 @@ button[type="submit"]:hover {
   font-size: 1.1rem;
 }
 
+/* Page Containers */
+.page-container {
+  margin: 4rem auto;
+  padding: 4rem;
+  width: 95%;
+  max-width: 1200px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-white);
+  padding: 0.8rem 1.8rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Dashboard Specific */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.action-card {
+  padding: 3rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.action-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.action-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 1rem;
+  background: var(--primary-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.action-card:hover .action-icon {
+  background: var(--primary);
+  color: white;
+}
+
+/* Role Selector */
+.role-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.role-btn {
+  padding: 1rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.role-btn.active {
+  background: var(--primary-glow);
+  border-color: var(--primary);
+  color: white;
+}
+
+.role-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
