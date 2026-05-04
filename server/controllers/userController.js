@@ -78,12 +78,12 @@ const updateUser = async (req,res) => {
   User.username = username || User.username;
   User.email = email || User.email;
   
-  if (Array.isArray(skills)) {
-    user.skills = skills;
+  if (skills) {
+    User.skills = skills;
   }
 
-  if (Array.isArray(education)) {
-    user.education = education;
+  if (education) {
+    User.education = education;
   }
   
   const updatedUser = await User.save();
@@ -133,4 +133,27 @@ const deleteUser = async (req,res) => {
   }
 }
 
-export {createUser,updateUser,deleteUser}
+const getUser = async (req,res) => {
+  try {
+    const {id} = req.params;
+    const User = await user.findById(id);
+    if(!User){
+      return res.status(404).json({
+        success:false,
+        msg:'user not found'
+      });
+    }
+    res.status(200).json({
+      success:true,
+      data:User
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({
+      success:false,
+      msg:'internal server error'
+    });
+  }
+}
+
+export {createUser,updateUser,deleteUser,getUser}

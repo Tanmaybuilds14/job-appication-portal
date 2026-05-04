@@ -9,6 +9,8 @@ import Dashboard from './pages/Dashboard';
 import Jobs from './pages/Jobs';
 import JobDetail from './pages/JobDetail';
 import PostJob from './pages/PostJob';
+import Profile from './pages/Profile';
+import MyApplications from './pages/MyApplications';
 import './App.css';
 
 const ProtectedRoute = ({ children, role }) => {
@@ -45,6 +47,22 @@ function AppContent() {
             element={
               <ProtectedRoute role="employer">
                 <PostJob />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/my-applications" 
+            element={
+              <ProtectedRoute role="applicant">
+                <MyApplications />
               </ProtectedRoute>
             } 
           />
