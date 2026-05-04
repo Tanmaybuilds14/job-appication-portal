@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://jobportal-seven-chi.vercel.app/register',
   headers: {
     'Content-Type': 'application/json',
   },
