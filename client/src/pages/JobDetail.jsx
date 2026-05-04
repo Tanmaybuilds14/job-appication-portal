@@ -20,7 +20,7 @@ const JobDetail = () => {
       try {
         const response = await api.get(`/jobs/${id}`);
         setJob(response.data.data);
-      } catch (err) {
+      } catch {
         setError('Failed to fetch job details');
       } finally {
         setLoading(false);

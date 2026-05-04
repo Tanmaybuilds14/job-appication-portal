@@ -25,9 +25,11 @@ const startServer = async () => {
     app.use('/api', applicationRouter);
     
 
-    app.listen(PORT,()=>{
-      console.log(`server running on http://localhost:${PORT}`);
-    });
+    if (process.env.NODE_ENV !== 'production') {
+      app.listen(PORT, () => {
+        console.log(`server running on http://localhost:${PORT}`);
+      });
+    }
   } catch (error) {
     console.error("Failed to start server:", error);
     process.exit(1);
@@ -35,3 +37,5 @@ const startServer = async () => {
 };
 
 startServer();
+
+export default app;
