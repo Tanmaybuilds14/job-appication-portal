@@ -31,8 +31,8 @@
       "destination": "/client/assets/$1"
     },
     {
-      "source": "/favicon.svg",
-      "destination": "/client/favicon.svg"
+      "source": "/computer.png",
+      "destination": "/client/computer.png"
     },
     {
       "source": "/icons.svg",
