@@ -30,7 +30,7 @@ const filefilter = (req, file, cb) => {
 
 const upload = multer({
   storage,
-  filefilter
+  fileFilter: filefilter
 });
 
 export default upload

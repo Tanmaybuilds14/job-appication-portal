@@ -43,6 +43,7 @@ const logincontroller = async (req,res)=>{
       {
       id:User._id,
       email:User.email,
+      username:User.username,
       logintype:User.logintype
       },
       secret,

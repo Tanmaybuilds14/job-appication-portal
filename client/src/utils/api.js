@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://jobportal-seven-chi.vercel.app/register',
+  baseURL: import.meta.env.VITE_API_URL || 'https://jobportal-seven-chi.vercel.app',
   headers: {
     'Content-Type': 'application/json',
   },

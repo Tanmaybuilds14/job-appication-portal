@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
   skills:[{
     name:{type:String,required:true,trim:true},
     level:{type:String,enum:['beginner','intermediate','advanced']},
-    experinece:{type: Number,min:0,default:0}
+    experience:{type: Number,min:0,default:0}
   }]
 });
 
