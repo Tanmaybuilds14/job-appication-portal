@@ -9,84 +9,81 @@ const Dashboard = () => {
   const isApplicant = user?.logintype === 'applicant';
 
   return (
-    <div className="page-container" style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '0', padding: '4rem' }}>
-      <div className="dashboard-header" style={{ borderBottom: '1px solid var(--border)', paddingBottom: '2rem', marginBottom: '3rem' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', color: 'var(--accent)', fontSize: '0.75rem', marginBottom: '1rem', textTransform: 'uppercase' }}>
-          Console // Account Overview
-        </div>
-        <h1 style={{ fontSize: '3.5rem', marginBottom: '0.5rem', fontWeight: '900', letterSpacing: '-0.05em' }}>
+    <div className="page-container glass">
+      <div className="dashboard-header" style={{ borderBottom: '1px solid var(--glass-border)', paddingBottom: '2rem', marginBottom: '3rem' }}>
+        <h1 style={{ fontSize: '3rem', marginBottom: '0.5rem', fontWeight: '800' }}>
           Welcome, {user?.username || 'User'}
         </h1>
-        <p style={{ color: 'var(--muted)', fontSize: '1.1rem', fontFamily: 'var(--font-mono)' }}>
-          Auth Status: <span style={{ color: 'var(--accent)', textTransform: 'uppercase' }}>{user?.logintype}</span> // Logged_In
+        <p style={{ color: 'var(--text-dim)', fontSize: '1.2rem' }}>
+          You are logged in as an <strong style={{ color: 'var(--primary)', textTransform: 'capitalize' }}>{user?.logintype}</strong>
         </p>
       </div>
 
-      <div className="profile-info-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1px', background: 'var(--border)', border: '1px solid var(--border)', marginBottom: '4rem' }}>
-        <div className="info-card" style={{ padding: '2rem', background: 'var(--bg)', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-          <div style={{ background: 'var(--accent-glow)', padding: '12px', color: 'var(--accent)' }}>
-            <Mail size={24} />
+      <div className="profile-info-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', marginBottom: '4rem' }}>
+        <div className="info-card glass" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ background: 'var(--primary-glow)', padding: '10px', borderRadius: '10px' }}>
+            <Mail size={20} color="var(--primary)" />
           </div>
           <div>
-            <span style={{ display: 'block', fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', marginBottom: '4px' }}>Network_ID</span>
-            <span style={{ fontWeight: '700', fontSize: '1rem' }}>{user?.email}</span>
+            <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-dim)' }}>Email</span>
+            <span style={{ fontWeight: '600', fontSize: '0.9rem' }}>{user?.email}</span>
           </div>
         </div>
 
-        <div className="info-card" style={{ padding: '2rem', background: 'var(--bg)', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-          <div style={{ background: 'var(--accent-glow)', padding: '12px', color: 'var(--accent)' }}>
-            <Shield size={24} />
+        <div className="info-card glass" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ background: 'rgba(192, 132, 252, 0.2)', padding: '10px', borderRadius: '10px' }}>
+            <Shield size={20} color="#c084fc" />
           </div>
           <div>
-            <span style={{ display: 'block', fontSize: '0.7rem', color: 'var(--muted)', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', marginBottom: '4px' }}>Permissions</span>
-            <span style={{ fontWeight: '700', fontSize: '1rem', textTransform: 'uppercase' }}>{user?.logintype}</span>
+            <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-dim)' }}>Role</span>
+            <span style={{ fontWeight: '600', fontSize: '0.9rem', textTransform: 'capitalize' }}>{user?.logintype}</span>
           </div>
         </div>
       </div>
 
-      <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', fontFamily: 'var(--font-mono)', textTransform: 'uppercase', letterSpacing: '2px' }}>[ Quick_Operations ]</h2>
+      <h2 style={{ fontSize: '2rem', marginBottom: '2rem' }}>Quick Actions</h2>
       <div className="dashboard-grid">
         {isApplicant ? (
           <>
-            <Link to="/jobs" className="action-card" style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '0' }}>
+            <Link to="/jobs" className="action-card glass">
               <div className="action-icon">
                 <Search size={32} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem' }}>Explorer</h3>
-              <p style={{ color: 'var(--muted)' }}>Initialize job search across global technical nodes.</p>
+              <h3>Browse Jobs</h3>
+              <p style={{ color: 'var(--text-dim)' }}>Explore thousands of job opportunities and find your next career move.</p>
             </Link>
-            <Link to="/my-applications" className="action-card" style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '0' }}>
+            <Link to="/my-applications" className="action-card glass">
               <div className="action-icon">
                 <FileText size={32} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem' }}>Deployments</h3>
-              <p style={{ color: 'var(--muted)' }}>Track status of active application packets.</p>
+              <h3>My Applications</h3>
+              <p style={{ color: 'var(--text-dim)' }}>Track the status of your submitted applications and view your history.</p>
             </Link>
           </>
         ) : (
           <>
-            <Link to="/post-job" className="action-card" style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '0' }}>
+            <Link to="/post-job" className="action-card glass">
               <div className="action-icon">
                 <PlusSquare size={32} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem' }}>Broadcast</h3>
-              <p style={{ color: 'var(--muted)' }}>Post new technical requirements to the network.</p>
+              <h3>Post a Job</h3>
+              <p style={{ color: 'var(--text-dim)' }}>Create a new job opening and find the best talent for your company.</p>
             </Link>
-            <div className="action-card" style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '0', opacity: 0.5, cursor: 'not-allowed' }}>
-              <div className="action-icon" style={{ background: 'var(--surface)' }}>
+            <div className="action-card glass" style={{ opacity: 0.6, cursor: 'not-allowed' }}>
+              <div className="action-icon" style={{ background: 'rgba(255,255,255,0.05)' }}>
                 <Briefcase size={32} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem' }}>Node_Manager</h3>
-              <p style={{ color: 'var(--muted)' }}>Manage active listings (STAGED/BETA).</p>
+              <h3>Manage Listings</h3>
+              <p style={{ color: 'var(--text-dim)' }}>View and edit your active job postings and applicants (Coming Soon).</p>
             </div>
           </>
         )}
-        <Link to="/profile" className="action-card" style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '0' }}>
+        <Link to="/profile" className="action-card glass">
           <div className="action-icon">
             <Settings size={32} />
           </div>
-          <h3 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem' }}>Settings</h3>
-          <p style={{ color: 'var(--muted)' }}>Update profile matrix and account preferences.</p>
+          <h3>Account Settings</h3>
+          <p style={{ color: 'var(--text-dim)' }}>Update your profile information, skills, education, and account preferences.</p>
         </Link>
       </div>
     </div>
@@ -94,4 +91,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
